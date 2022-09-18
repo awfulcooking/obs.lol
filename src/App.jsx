@@ -1,21 +1,10 @@
-import { useState } from 'react'
+import Connection from './Connection'
+import SceneList from './SceneList'
 
-import Connect from './Connect'
+import './App.css'
 
-export default function App({ Component, pageProps }) {
-  const [ connection, setConnection ] = useState()
-  pageProps = Object.assign({}, pageProps, { connection })
-
-  function connected(obs) {
-    console.info('connected', obs);
-    setConnection(obs)
-  }
-
-  const content = connection
-     ? <p>Connected</p>
-     : <Connect onConnect={connected} />
-
-  return <main>
-    {content}
-  </main>
+export default function App() {
+  return <Connection>
+    <SceneList />
+  </Connection>
 }
