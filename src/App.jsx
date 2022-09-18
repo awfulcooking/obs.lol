@@ -1,10 +1,10 @@
 import Connection from './Connection'
-import SceneList from './SceneList'
+import MainView from './MainView'
 
 import './App.css'
 
 export default function App() {
   return <Connection>
-    <SceneList />
+    <MainView />
   </Connection>
 }
