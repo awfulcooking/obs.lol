@@ -1,10 +1,10 @@
 import { Grid } from '@mui/material'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import SceneList from './SceneList'
 import SourceList from './SourceList'
 
-export default function MainView() {
+export default function SceneEditor() {
   const [ selectedScene, setSelectedScene ] = useState()
 
   return <Grid container>
@@ -13,7 +13,7 @@ export default function MainView() {
     </Grid>
 
     <Grid item xs={6}>
-        <SourceList sceneName={selectedScene} />
+      <SourceList sceneName={selectedScene} />
     </Grid>
   </Grid>
 }

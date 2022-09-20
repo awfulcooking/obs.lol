@@ -8,7 +8,7 @@ import {
 import { Box, Tabs, Tab } from '@mui/material'
 
 import Connection from './Connection'
-import MainView from './MainView'
+import SceneEditor from './SceneEditor'
 import MixerView from './MixerView'
 
 import './App.css'
@@ -28,7 +28,7 @@ export default function App() {
       <Routes>
         <Route path="/">
           <Route path="/mixer" element={<MixerView />} />
-          <Route index element={<MainView />} />
+          <Route index element={<SceneEditor />} />
         </Route>
       </Routes>
     </Box>
