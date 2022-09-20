@@ -8,11 +8,6 @@ window.OWS = OBSWebSocket
 const obs = new OBSWebSocket()
 window.obs = obs
 
-obs.on('ConnectionOpened', () => console.info('OBS connection opened'))
-obs.on('ConnectionClosed', () => console.info('OBS connection closed'))
-obs.on('ConnectionClose', () => console.info('OBS connection close'))
-obs.on('ConnectionError', () => console.info('OBS connection error'))
-
 export default function Connection({ children }) {
   const [ connected, setConnected ] = useState()
 
@@ -23,7 +18,11 @@ export default function Connection({ children }) {
     }
 
     obs.on('ConnectionError', onDisconnect)
-    return () => obs.off('ConnectionError', onDisconnect)
+    obs.on('ConnectionClosed', onDisconnect)
+    return () => {
+      obs.off('ConnectionError', onDisconnect)
+      obs.off('ConnectionClosed', onDisconnect)
+    }
   })
 
   const content = connected
