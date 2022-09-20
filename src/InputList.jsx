@@ -5,6 +5,8 @@ import { Grid, Card, CardContent, CardHeader, Slider } from '@mui/material'
 import { EventSubscription } from 'obs-websocket-js'
 import OBSContext from './lib/obsContext'
 
+import InputVolumeSlider from './InputVolumeSlider'
+
 export default function InputList() {
   const obs = useContext(OBSContext)
   const [ inputs, setInputs ] = useState()
@@ -38,11 +40,7 @@ export default function InputList() {
         <Card variant="outlined">
           <CardHeader title={input.inputName} />
           <CardContent>
-            <Slider
-              value={50}
-              min={0}
-              max={100}
-            />
+            <InputVolumeSlider inputName={input.inputName} />
           </CardContent>
         </Card>
       </Grid>
