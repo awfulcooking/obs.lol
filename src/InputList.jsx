@@ -10,12 +10,11 @@ export default function InputList() {
   const [ inputs, setInputs ] = useState()
 
   useEffect(() => {
-    function changed(data) {
-      if (data.inputs)
-        setInputs(data.inputs)
-    }
-
-    obs.call('GetInputList').then(changed)
+    obs.call('GetInputList').then(async ({ inputs }) => {
+      const hasAudioChecks = await Promise.allSettled(inputs.map(({ inputName }) => obs.call('GetInputVolume', { inputName })))
+      const audioInputs = inputs.filter((_, i) => hasAudioChecks[i].status == 'fulfilled')
+      setInputs(audioInputs)
+    })
 
     // obs.reidentify({
     //   eventSubscriptions: EventSubscription.General | EventSubscription.InputVolumeMeters,
