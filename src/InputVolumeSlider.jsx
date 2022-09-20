@@ -14,23 +14,25 @@ export default function InputVolumeSlider({ inputName }) {
     setVolume(inputVolumeMul)
   }
 
-  function onOBSVolumeChange(change) {
-    if (change.inputName === inputName && !moving)
-      setVolume(change.inputVolumeMul)
-  }
-
   function setVolumeInOBS(mul) {
     return obs.call('SetInputVolume', { inputName, inputVolumeMul: mul })
   }
 
+  function onOBSVolumeChange(change) {
+    if (change.inputName === inputName)
+      setVolume(change.inputVolumeMul)
+  }
+
   useEffect(() => {
     refresh()
-
-    obs.on('InputVolumeChanged', onOBSVolumeChange)
-    return () => {
-      obs.off('InputVolumeChanged', onOBSVolumeChange)
-    }
   }, [inputName])
+
+  useEffect(() => {
+    if (!moving) {
+      obs.on('InputVolumeChanged', onOBSVolumeChange)
+      return () => obs.off('InputVolumeChanged', onOBSVolumeChange)
+    }
+  })
 
   async function onMove(v) {
     setMoving(true)
