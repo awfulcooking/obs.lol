@@ -14,9 +14,13 @@ export default function Connect({ onConnect }) {
 
   async function handleSubmit(event) {
     event.preventDefault()
+
     try {
-      await obs.connect(url || 'ws://localhost:4455', pass || null)
-      console.log('connected?', obs.socket)
+      let dest = url || 'ws://localhost:4455'
+      if (!dest.match(/^wss?:\/\//i))
+        dest = `ws://${dest}`
+
+      await obs.connect(dest, pass || null)
       onConnect(obs)
     } catch(ex) {
       setError(ex.message || `Error code ${ex.code}`)
