@@ -37,11 +37,11 @@ export default function Connect({ onConnect }) {
         <br />
         <SlInput name="pass" label="Password" type="password" onSlInput={e => setPass(e.target.value)} />
         <br />
-        <SlCheckbox>Auto-connect</SlCheckbox>
-        <br />
+        {/* <SlCheckbox>Auto-connect</SlCheckbox> */}
+        {/* <br /> */}
         <br />
         <SlButton type="submit" variant="primary">
-          Submit
+          Connect
         </SlButton>
       </form>
     </div>
