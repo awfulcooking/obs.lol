@@ -1,51 +1,36 @@
 import {
-  BrowserRouter as Router,
+  Link,
   Routes,
   Route,
-  useMatch,
-  useResolvedPath,
-  useNavigate,
+  useLocation,
 } from "react-router-dom";
 
-import { useEffect, useRef } from 'react'
+import { Box, Tabs, Tab } from '@mui/material'
 
 import Connection from './Connection'
 import MainView from './MainView'
 import MixerView from './MixerView'
 
 import './App.css'
-import { SlTab, SlTabGroup, SlTabPanel } from "@shoelace-style/shoelace/dist/react";
-
-function NavTab({ to, children, end=true, ...props }) {
-  const resolved = useResolvedPath(to);
-  const match = useMatch({ path: resolved.pathname, end });
-  const navigate = useNavigate()
-
-  function go() {
-    navigate(to)
-  }
-
-  return <SlTab active={match} slot="nav" onClick={go} {...props}>{children}</SlTab>
-}
 
 export default function App() {
-  return <Connection>
-    <Router>
-      <SlTabGroup>
-        <NavTab to="/">
-          Main
-        </NavTab>
-        <NavTab to="/mixer">
-          Mixer
-        </NavTab>
-      </SlTabGroup>
+  const location = useLocation()
 
+  return <Connection>
+    <Box sx={{ width: '100%' }}>
+      <Tabs value={location.pathname}>
+        <Tab label="Scene Editor" value="/" to="/" component={Link} />
+        <Tab label="Mixer" value="/mixer" to="/mixer" component={Link} />
+      </Tabs>
+    </Box>
+
+    <Box sx={{ width: '100%' }}>
       <Routes>
         <Route path="/">
           <Route path="/mixer" element={<MixerView />} />
           <Route index element={<MainView />} />
         </Route>
       </Routes>
-    </Router>
+    </Box>
   </Connection>
 }

@@ -1,22 +1,19 @@
+import { Grid } from '@mui/material'
 import { useState, useEffect } from 'react'
-import { Container, Row, Col, setConfiguration as setGridConfiguration } from 'react-grid-system'
 
 import SceneList from './SceneList'
 import SourceList from './SourceList'
 
-setGridConfiguration({ gutterWidth: 0 })
-
 export default function MainView() {
   const [ selectedScene, setSelectedScene ] = useState()
 
-  return <Container fluid>
-    <Row>
-      <Col>
-        <SceneList onSceneSelect={setSelectedScene} />
-      </Col>
-      <Col>
+  return <Grid container>
+    <Grid item xs={6}>
+      <SceneList onSceneSelect={setSelectedScene} />
+    </Grid>
+
+    <Grid item xs={6}>
         <SourceList sceneName={selectedScene} />
-      </Col>
-    </Row>
-  </Container>
+    </Grid>
+  </Grid>
 }
