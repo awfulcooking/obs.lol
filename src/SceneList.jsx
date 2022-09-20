@@ -1,6 +1,5 @@
+import { List, ListItem, ListItemButton } from '@mui/material'
 import { useState, useEffect, useContext } from 'react'
-
-import { SlTree, SlTreeItem } from '@shoelace-style/shoelace/dist/react'
 
 import OBSContext from './lib/obsContext'
 
@@ -38,11 +37,11 @@ export default function SceneList({ onSceneSelect }) {
     onSceneSelect?.(name)
   }
 
-  return <SlTree>
+  return <List>
     {scenes?.map(({sceneName}) =>
-      <SlTreeItem key={sceneName} selected={sceneName === currentSceneName} onClick={() => setScene(sceneName)}>
+      <ListItemButton key={sceneName} selected={sceneName === currentSceneName} onClick={() => setScene(sceneName)}>
         {sceneName}
-      </SlTreeItem>
+      </ListItemButton>
     )}
-  </SlTree>
+  </List>
 }

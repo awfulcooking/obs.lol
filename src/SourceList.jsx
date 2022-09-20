@@ -1,6 +1,5 @@
+import { List, ListItemButton } from '@mui/material'
 import { useState, useEffect, useContext } from 'react'
-
-import { SlTree, SlTreeItem } from '@shoelace-style/shoelace/dist/react'
 
 import OBSContext from './lib/obsContext'
 
@@ -41,11 +40,11 @@ export default function SourceList({ sceneName, onSourceSelect }) {
     }
   }, [ sceneName ])
 
-  return <SlTree>
+  return <List>
     {sources?.map(({sourceName}) =>
-      <SlTreeItem key={sourceName} selected={sourceName === currentSourceName} onClick={() => onSourceSelect?.(sourceName)}>
+      <ListItemButton key={sourceName} selected={sourceName === currentSourceName} onClick={() => onSourceSelect?.(sourceName)}>
         {sourceName}
-      </SlTreeItem>
+      </ListItemButton>
     )}
-  </SlTree>
+  </List>
 }
