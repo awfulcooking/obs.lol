@@ -29,5 +29,10 @@ export default function Projector({ sourceName, refreshInterval = null }) {
     setImage(imageData)
   }
 
-  return <img src={image} alt={`Screenshot of ${sourceName}`} />
+  return <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+    <img src={image} alt={`Screenshot of ${sourceName}`} style={{
+      maxWidth: '100%',
+      maxHeight: '100%',
+    }} />
+  </div>
 }
