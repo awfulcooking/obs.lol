@@ -34,7 +34,7 @@ export default function InputList() {
     }
   }, [])
 
-  return <Grid container spacing={0.3} columns={{ xs: 4, sm: 6, md: 8 }}>
+  return <Grid container spacing={0.3} columns={{ xs: 2, md: 4, lg: 6 }}>
     {inputs?.map(({ inputName }) =>
       <Grid item xs={2} key={inputName}>
         <MixerCard inputName={inputName} />
