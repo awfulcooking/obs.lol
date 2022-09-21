@@ -13,8 +13,10 @@ export default function NavBar() {
       <Tabs value={location.pathname}>
         <Tab label="Scene Editor" value="/" to="/" component={Link} />
         <Tab label="Mixer" value="/mixer" to="/mixer" component={Link} />
+        <Tab label="Projector" value="/projector" to="/projector" component={Link} />
       </Tabs>
     </Grid>
+
     <Grid item xs={1}>
       <Button
         onClick={() => obs.disconnect()}
