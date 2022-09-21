@@ -4,9 +4,11 @@
 
 main {
   width: 100%;
-  min-height: 100vh;
-  margin: 0 auto;
+  height: 100vh;
 
   cursor: default;
   user-select: none;
+
+  display: flex;
+  flex-direction: column;
 }
