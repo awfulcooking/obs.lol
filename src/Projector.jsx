@@ -23,7 +23,7 @@ export default function Projector({ sourceName, refreshInterval = null }) {
 
     const { imageData } = await obs.call('GetSourceScreenshot', {
       sourceName,
-      imageFormat: 'png',
+      imageFormat: 'jpg',
     })
 
     setImage(imageData)
