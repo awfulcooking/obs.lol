@@ -11,4 +11,7 @@ main {
 
   display: flex;
   flex-direction: column;
+
+  background-color: #000;
+  color: #f6f6f6;
 }
