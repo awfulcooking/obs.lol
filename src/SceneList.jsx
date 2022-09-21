@@ -1,10 +1,10 @@
 import { List, ListItem, ListItemButton } from '@mui/material'
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
-import OBSContext from './lib/obsContext'
+import useOBS from './lib/useOBS'
 
 export default function SceneList({ onSceneSelect }) {
-  const obs = useContext(OBSContext)
+  const obs = useOBS()
 
   const [ scenes, setScenes ] = useState()
   const [ currentSceneName, setCurrentSceneName ] = useState()

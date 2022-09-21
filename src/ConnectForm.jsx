@@ -1,12 +1,12 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { SlButton, SlCheckbox, SlInput, SlAlert, SlIcon } from '@shoelace-style/shoelace/dist/react';
 
-import OBSContext from './lib/obsContext'
+import useOBS from './lib/useOBS'
 
 import './ConnectForm.css'
 
 export default function Connect({ onConnect }) {
-  const obs = useContext(OBSContext)
+  const obs = useOBS()
 
   const [ url, setUrl ] = useState()
   const [ pass, setPass ] = useState()

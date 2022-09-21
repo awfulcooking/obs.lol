@@ -1,14 +1,14 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect } from 'react'
 
 import { Grid, Card, CardContent, CardHeader, Slider } from '@mui/material'
 
 import { EventSubscription } from 'obs-websocket-js'
-import OBSContext from './lib/obsContext'
+import useOBS from './lib/useOBS'
 
 import InputVolumeSlider from './InputVolumeSlider'
 
 export default function InputList() {
-  const obs = useContext(OBSContext)
+  const obs = useOBS()
   const [ inputs, setInputs ] = useState()
 
   useEffect(() => {

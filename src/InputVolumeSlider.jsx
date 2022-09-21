@@ -1,10 +1,10 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Slider } from "@mui/material";
 
-import OBSContext from "./lib/obsContext";
+import useOBS from './lib/useOBS'
 
 export default function InputVolumeSlider({ inputName }) {
-  const obs = useContext(OBSContext)
+  const obs = useOBS()
 
   const [ volume, setVolume ] = useState()
   const [ moving, setMoving ] = useState()
