@@ -3,11 +3,13 @@ import { Slider } from "@mui/material";
 
 import useOBS from './lib/useOBS'
 
-export default function InputVolumeSlider({ inputName }) {
+export default function InputVolumeSlider({ inputName, monitordB, color }) {
   const obs = useOBS()
 
   const [ volume, setVolume ] = useState()
   const [ moving, setMoving ] = useState()
+
+  useEffect(() => monitordB?.(mulToDb(volume)))
 
   async function refresh() {
     const { inputVolumeMul } = await obs.call('GetInputVolume', { inputName })
@@ -46,16 +48,14 @@ export default function InputVolumeSlider({ inputName }) {
     setVolumeInOBS(v)
   }
 
-  const quad = v => v**4
-  const mulToDb = v => 20 * Math.log10(v)
-
   if (volume === undefined)
-    return
+    return <Slider value={1} disabled />
 
   return <Slider
       value={Math.pow(volume, 1/4)}
       onChange={(_, v) => onMove(quad(v))}
       onChangeCommitted={(_, v) => onMoveFinished(quad(v))}
+      color={color}
       min={0}
       max={1}
       step={0.02}
@@ -63,4 +63,12 @@ export default function InputVolumeSlider({ inputName }) {
       valueLabelDisplay="auto"
       valueLabelFormat={v => `${mulToDb(quad(v)).toFixed(1)} dB`}
     />
+}
+
+function quad(v) {
+  return v ** 4
+}
+
+function mulToDb(v) {
+  return 20 * Math.log10(v)
 }
