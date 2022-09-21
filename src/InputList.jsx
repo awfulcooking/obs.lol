@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 
-import { Grid, Card, CardContent, CardHeader, Slider } from '@mui/material'
+import { Grid } from '@mui/material'
 
 import { EventSubscription } from 'obs-websocket-js'
 import useOBS from './lib/useOBS'
 
-import InputVolumeSlider from './InputVolumeSlider'
+import MixerCard from './MixerCard'
 
 export default function InputList() {
   const obs = useOBS()
@@ -35,14 +35,9 @@ export default function InputList() {
   }, [])
 
   return <Grid container spacing={0.3} columns={{ xs: 4, sm: 6, md: 8 }}>
-    {inputs?.map((input) =>
-      <Grid item xs={2} key={input.inputName}>
-        <Card variant="outlined">
-          <CardHeader title={input.inputName} />
-          <CardContent>
-            <InputVolumeSlider inputName={input.inputName} />
-          </CardContent>
-        </Card>
+    {inputs?.map(({ inputName }) =>
+      <Grid item xs={2} key={inputName}>
+        <MixerCard inputName={inputName} />
       </Grid>
     )}
   </Grid>
