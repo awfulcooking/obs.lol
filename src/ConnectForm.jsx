@@ -48,6 +48,8 @@ export default function Connect({ onConnect }) {
           Connect
         </SlButton>
       </form>
+
+      <a className="repo-link" href="https://github.com/awfulcooking/obs.lol">source code</a>
     </div>
   );
 };

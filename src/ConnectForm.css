@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 
   height: 100vh;
 }
@@ -10,8 +11,15 @@
   padding: var(--sl-spacing-2x-large);
   border-radius: var(--sl-border-radius-medium);
   border: 1px solid rgba(255, 255, 255, 0.5);
+
+  margin-bottom: 0.2em;
 }
 
 .ConnectForm form sl-button {
   width: 100%;
+}
+
+.ConnectForm .repo-link {
+  font-size: 0.9em;
+  color: gray;
 }
