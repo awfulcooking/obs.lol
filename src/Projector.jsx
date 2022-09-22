@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import setAsyncInterval from './lib/setAsyncInterval'
 import useOBS from './lib/useOBS'
 
-export default function Projector({ sourceName, refreshInterval = null }) {
+export default function Projector({ sourceName, refreshInterval = null, align = "center", justify = "center" }) {
   const obs = useOBS()
   const [ image, setImage ] = useState()
 
@@ -29,7 +29,10 @@ export default function Projector({ sourceName, refreshInterval = null }) {
     setImage(imageData)
   }
 
-  return <div style={{ display: 'flex', height: '100%', justifyContent: 'center', alignItems: 'center'}}>
+  if (sourceName == null)
+    return
+
+  return <div style={{ display: 'flex', height: '100%', justifyContent: justify, alignItems: align }}>
     <img src={image} alt={`Screenshot of ${sourceName}`} style={{
       maxWidth: '100%',
       maxHeight: '100%',

@@ -3,17 +3,39 @@ import { useState } from 'react'
 
 import SceneList from './SceneList'
 import SourceList from './SourceList'
+import Projector from './Projector'
 
 export default function SceneEditor() {
   const [ selectedScene, setSelectedScene ] = useState()
+  const [ selectedSource, setSelectedSource ] = useState()
 
-  return <Grid container>
-    <Grid item xs={6}>
-      <SceneList onSceneSelect={setSelectedScene} />
+  function onSceneSelect(sceneName) {
+    if (selectedScene === sceneName)
+      return;
+    setSelectedScene(sceneName)
+    setSelectedSource(null)
+  }
+
+  return <Grid container sx={{ height: '100%', overflow: 'auto' }}>
+    <Grid item xs={2} sx={{ height: '100%', overflow: 'auto' }}>
+      <SceneList onSceneSelect={onSceneSelect} />
     </Grid>
 
-    <Grid item xs={6}>
-      <SourceList sceneName={selectedScene} />
+    <Grid item xs={3} sx={{ height: '100%', overflow: 'auto' }}>
+      <SourceList
+        key={selectedScene}
+        sceneName={selectedScene}
+        selectedSource={selectedSource}
+        onSourceSelect={setSelectedSource}
+        autoSelectFirst />
+    </Grid>
+
+    <Grid item xs={7} sx={{ height: '100%', overflow: 'auto' }}>
+      <Projector
+        key={selectedSource}
+        sourceName={selectedSource}
+        refreshInterval={0}
+        align="start" />
     </Grid>
   </Grid>
 }

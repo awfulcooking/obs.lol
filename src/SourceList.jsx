@@ -3,22 +3,17 @@ import { useState, useEffect } from 'react'
 
 import useOBS from './lib/useOBS'
 
-export default function SourceList({ sceneName, onSourceSelect }) {
+export default function SourceList({ sceneName, selectedSource, onSourceSelect, autoSelectFirst }) {
   const obs = useOBS()
-
   const [ sources, setSources ] = useState()
-  const [ currentSourceName, setCurrentSourceName ] = useState()
 
   useEffect(() => {
     function changed(data) {
       if (data.sceneItems)
         setSources(data.sceneItems)
-
-      console.log(data.sceneItems)
     }
 
     function refresh() {
-      console.debug('Refresh sources list')
       obs.call('GetSceneItemList', { sceneName }).then(changed)
     }
 
@@ -40,9 +35,16 @@ export default function SourceList({ sceneName, onSourceSelect }) {
     }
   }, [ sceneName ])
 
+  useEffect(() => {
+    if (selectedSource || !sources?.[0])
+      return;
+
+    onSourceSelect?.(sources[0].sourceName)
+  }, [ sources?.[0] ])
+
   return <List>
     {sources?.map(({sourceName}) =>
-      <ListItemButton key={sourceName} selected={sourceName === currentSourceName} onClick={() => onSourceSelect?.(sourceName)}>
+      <ListItemButton key={sourceName} selected={sourceName === selectedSource} onClick={() => onSourceSelect?.(sourceName)}>
         {sourceName}
       </ListItemButton>
     )}
