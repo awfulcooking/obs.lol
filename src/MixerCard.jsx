@@ -29,7 +29,7 @@ export default function MixerCard({ inputName }) {
     return () => obs.off('InputMuteStateChanged', onOBSMuteChange)
   }, [ inputName ])
 
-  return <Card raised>
+  return <Card variant="outlined">
     <CardHeader title={inputName} action={
         <IconButton onClick={toggleMuteInOBS}>
           <VolumeIcon volume={volume} muted={mute} color={mute ? "error" : "default"} />
