@@ -3,6 +3,9 @@ import {
   Route,
 } from "react-router-dom";
 
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './lib/theme'
+
 import NavBar from './NavBar'
 
 import SceneEditor from './SceneEditor'
@@ -12,7 +15,7 @@ import ProjectorView from './ProjectorView'
 import './App.css'
 
 export default function App() {
-  return <>
+  return <ThemeProvider theme={theme}>
     <NavBar />
 
     <div style={{ flex: 1, overflow: 'auto' }}>
@@ -24,5 +27,5 @@ export default function App() {
         </Route>
       </Routes>
     </div>
-  </>
+  </ThemeProvider>
 }
