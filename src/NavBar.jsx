@@ -8,8 +8,8 @@ export default function NavBar() {
   const obs = useOBS()
   const location = useLocation()
 
-  return <Grid container columns={5} role="navigation">
-    <Grid item xs={4}>
+  return <Grid container role="navigation">
+    <Grid item sx={{ flexGrow: 1 }}>
       <Tabs value={location.pathname}>
         <Tab label="Scene Editor" value="/" to="/" component={Link} />
         <Tab label="Mixer" value="/mixer" to="/mixer" component={Link} />
@@ -17,12 +17,11 @@ export default function NavBar() {
       </Tabs>
     </Grid>
 
-    <Grid item xs={1}>
+    <Grid item>
       <Button
         onClick={() => obs.disconnect()}
-        fullWidth={true}
         color="error"
-        sx={{ height: '100%' }}
+        sx={{ height: '100%', marginRight: '0.5em' }}
       >Logout</Button>
     </Grid>
   </Grid>
