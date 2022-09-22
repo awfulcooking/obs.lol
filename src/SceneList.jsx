@@ -12,7 +12,7 @@ export default function SceneList({ onSceneSelect }) {
   useEffect(() => {
     function changed(data) {
       if (data.scenes)
-        setScenes(data.scenes)
+        setScenes(data.scenes.reverse())
 
       if (data.currentProgramSceneName) {
         onSceneSelect?.(data.currentProgramSceneName)

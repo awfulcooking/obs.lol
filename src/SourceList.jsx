@@ -10,7 +10,7 @@ export default function SourceList({ sceneName, selectedSource, onSourceSelect, 
   useEffect(() => {
     function changed(data) {
       if (data.sceneItems)
-        setSources(data.sceneItems)
+        setSources(data.sceneItems.reverse())
     }
 
     function refresh() {
