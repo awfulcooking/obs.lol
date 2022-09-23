@@ -1,9 +1,11 @@
+import { Box } from '@mui/system'
 import { Grid } from '@mui/material'
 import { useState } from 'react'
 
 import SceneList from './SceneList'
 import SourceList from './SourceList'
 import Projector from './Projector'
+import InputProperties from './InputProperties'
 
 export default function SceneEditor() {
   const [ selectedScene, setSelectedScene ] = useState()
@@ -31,11 +33,17 @@ export default function SceneEditor() {
     </Grid>
 
     <Grid item xs={12} sx={{ height: '100%', overflow: 'auto' }}>
-      <Projector
-        key={selectedSource}
-        sourceName={selectedSource}
-        refreshInterval={0}
-        align="start" />
+      <Box>
+        <Projector
+          key={selectedSource}
+          sourceName={selectedSource}
+          refreshInterval={0}
+          align="start" />
+      </Box>
+
+      <Box>
+        <InputProperties inputName={selectedSource} />
+      </Box>
     </Grid>
   </Grid>
 }
