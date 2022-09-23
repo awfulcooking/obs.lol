@@ -16,12 +16,12 @@ export default function SceneEditor() {
     setSelectedSource(null)
   }
 
-  return <Grid container sx={{ height: '100%', overflow: 'auto' }}>
-    <Grid item xs={2} sx={{ height: '100%', overflow: 'auto' }}>
+  return <Grid container columns={24} sx={{ height: '100%', overflow: 'auto' }}>
+    <Grid item xs={5} sx={{ height: '100%', overflow: 'auto' }}>
       <SceneList onSceneSelect={onSceneSelect} />
     </Grid>
 
-    <Grid item xs={3} sx={{ height: '100%', overflow: 'auto' }}>
+    <Grid item xs={7} sx={{ height: '100%', overflow: 'auto' }}>
       <SourceList
         key={selectedScene}
         sceneName={selectedScene}
@@ -30,7 +30,7 @@ export default function SceneEditor() {
         autoSelectFirst />
     </Grid>
 
-    <Grid item xs={7} sx={{ height: '100%', overflow: 'auto' }}>
+    <Grid item xs={12} sx={{ height: '100%', overflow: 'auto' }}>
       <Projector
         key={selectedSource}
         sourceName={selectedSource}
