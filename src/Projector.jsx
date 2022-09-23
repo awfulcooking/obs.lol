@@ -19,7 +19,7 @@ export default function Projector({ sourceName, refreshInterval = null, align = 
 
   async function refresh() {
     if (!sourceName)
-      return
+      return setImage(null)
 
     const { imageData } = await obs.call('GetSourceScreenshot', {
       sourceName,
@@ -29,7 +29,7 @@ export default function Projector({ sourceName, refreshInterval = null, align = 
     setImage(imageData)
   }
 
-  if (sourceName == null)
+  if (!image)
     return
 
   return <div style={{ display: 'flex', height: '100%', justifyContent: justify, alignItems: align }}>
