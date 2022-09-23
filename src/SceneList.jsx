@@ -2,6 +2,8 @@ import { List, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem } from
 import { useState, useEffect } from 'react'
 
 import useOBS from './lib/useOBS'
+
+import { useToaster } from './Toaster'
 import RenameModal from './RenameModal'
 
 import Edit from '@mui/icons-material/Edit'
@@ -11,6 +13,8 @@ export default function SceneList({ onSceneSelect }) {
 
   const [ scenes, setScenes ] = useState()
   const [ currentSceneName, setCurrentSceneName ] = useState()
+
+  const toast = useToaster()
 
   useEffect(() => {
     function changed(data) {
@@ -62,6 +66,7 @@ export default function SceneList({ onSceneSelect }) {
 
   function doRename(sceneName, newSceneName) {
     obs.call('SetSceneName', { sceneName, newSceneName })
+      .catch(({ message }) => toast(message, "error"))
   }
 
   return <List>
