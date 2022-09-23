@@ -10,10 +10,24 @@ export const theme = createTheme({
       main: '#ca00b4',
     }
   },
+
   typography: {
     fontFamily: 'var(--interface-font)',
     button: {
       textTransform: 'none',
     }
+  },
+
+  components: {
+    MuiBackdrop: {
+      defaultProps: {
+        onContextMenu: (e) => e.preventDefault(),
+      },
+    },
+    MuiPaper: {
+      defaultProps: {
+        onContextMenu: (e) => e.preventDefault(),
+      },
+    },
   },
 })
