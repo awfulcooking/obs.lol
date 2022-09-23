@@ -6,10 +6,10 @@ export default function setAsyncInterval(fn, ms=0) {
       return
 
     await fn()
-    setTimeout(loop, ms)
+    requestAnimationFrame(loop, ms)
   }
 
-  setTimeout(loop, ms)
+  requestAnimationFrame(loop, ms)
 
   return () => canceled = true
 }
